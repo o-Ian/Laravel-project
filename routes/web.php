@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', HomeController::class);
+
+Route::get('produtos', [CategoryController::class, 'index']);
+Route::get('produtos/{slug}', [CategoryController::class, 'show']);
+
+Route::get('blog', BlogController::class);
+
+Route::view('sobre', 'about/index');
+
+Route::get('contato', [ContactController::class, 'index']);
+Route::post('contato', [ContactController::class, 'form']);

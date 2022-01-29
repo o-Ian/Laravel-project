@@ -17,14 +17,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', HomeController::class);
+Route::get('/', HomeController::class)->name('site.home');
 
-Route::get('produtos', [CategoryController::class, 'index']);
+Route::get('produtos', [CategoryController::class, 'index'])->name('site.products');
 Route::get('produtos/{slug}', [CategoryController::class, 'show']);
 
-Route::get('blog', BlogController::class);
+Route::get('blog', BlogController::class)->name('site.blog');
 
-Route::view('sobre', 'about/index');
+Route::view('sobre', 'about/index')->name('site.about');
 
-Route::get('contato', [ContactController::class, 'index']);
-Route::post('contato', [ContactController::class, 'form']);
+Route::get('contato', [ContactController::class, 'index'])->name('site.contact');
+Route::post('contato', [ContactController::class, 'form'])->name('site.contact.form');

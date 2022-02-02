@@ -10,31 +10,51 @@
 
                 <form class="contact__form" action="{{route('site.contact.form')}}" method="post">
                     @csrf
+                    @if (session('success'))                    
+                    <div>
+                        {{ session('message') }}
+                    </div>
+
+                    @endif
+                    <div>
+
+                    </div>
                     
-                        <div>
-                            
-                        </div>
-                    
+                {{-- @if ($errors->any())
+                    <div>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif --}}
+                
                     <div>
                     </div>
                     <label for="name">Nome completo</label>
-                    <input id="name" name="name" type="text" tabindex="1" placeholder="Ex: José da Silva">
-                    
-                    <div></div>
+                    <input id="name" name="name" type="text" value = "{{ old('name') }}" tabindex="1" placeholder="Ex: José da Silva">
+                    @error('name')
+                    <div>{{ $message }}</div>
+                    @enderror
+                   
                    
 
                     <label for="email">Email</label>
-                    <input id="email" name="email" type="text" tabindex="2" placeholder="Ex: email@email.com.br"
+                    <input id="email" name="email" type="text" value = "{{ old('email') }}" tabindex="2" placeholder="Ex: email@email.com.br"
                            value=>
+                    @error('email')
+                    <div>{{ $message }}</div>
+                    @enderror
+                    
                    
-                    <div></div>
-                   
-
                     <label for="message">Mensagem</label>
                     <textarea id="message" name="message" tabindex="3" cols="20" rows="4"
-                              placeholder="Digite aqui..."></textarea>
-                   
-                    <div></div>
+                              placeholder="Digite aqui...">{{ old('message') }}</textarea>
+                    @error('message')
+                    <div>{{ $message }}</div>
+                    @enderror
+                    
                    
 
                     <button class="button button_primary" type="submit">Enviar mensagem</button>

@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', HomeController::class)->name('site.home');
 
 Route::get('produtos', [CategoryController::class, 'index'])->name('site.products');
-Route::get('produtos/{slug}', [CategoryController::class, 'show']);
+Route::get('produtos/{category}', [CategoryController::class, 'show'])->name('site.products.category');
 
 Route::get('blog', BlogController::class)->name('site.blog');
 
